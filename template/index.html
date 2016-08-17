@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load my_tag %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}Travel Blog{% endblock %}
+{% block pageheader %}
+<header class="intro-header" style="background-image: url('/static/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Travel Blog</h1>
+                    <hr class="small">
+                    <span class="subheading">A Blog Content Designed Expeditiously For Gad</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block body %}
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                {% public_station_list as stations %}
+                {% if stations %}
+                    {% for item in stations %}
+                        <div class="post-preview">
+                            <a href="/post/{{ item.pk }}">
+                                <h2 class="post-title">
+                                    {{ item.title }}
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    {{ item.sub_title }}
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by <a href="{% url 'about_page' %}">xjw</a>
+                                on {% language 'en-us' %} {{ item.create_time |date:"D d M Y" }} {% endlanguage %}
+                                {% if request.user.is_authenticated %}
+                                     , want to <a href="#">edit</a>?
+                                {% endif %}
+                            </p>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                {% else %}
+                    <div class="post-preview">
+                        <a href="#">
+                            <h2 class="post-title">
+                                Travel！Travel！Travel！
+                            </h2>
+                            <h3 class="post-subtitle">
+                                Waiting For add ...
+                            </h3>
+                        </a>
+                        {% if request.user.is_authenticated %}
+                            <p class="post-meta">Posted by <a href="#">Xjw</a>,want to <a href="#">add</a>?</p>
+                        {% else %}
+                            <p class="post-meta">Posted by <a href="#">Xjw</a></p>
+                        {% endif %}
+                    </div>
+                    <hr>
+                {% endif %}
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#">Older Posts &rarr;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+{% endblock %}

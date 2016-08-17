@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block title %}Travel Blog - Post{% endblock %}
+
+{% block pageheader %}
+    <header class="intro-header" style="background-image: url('/static/img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{ station.title }}</h1>
+                        <h2 class="subheading">{{ station.sub_title }}</h2>
+                        <span>
+                            Arrival at {{ station.city }},{{ station.province }}
+                            on {% language 'en-us' %} {{ station.arrival_time |date:"D d M Y" }} {% endlanguage %}
+                        </span>
+                        <span class="meta">Posted by <a href="{% url 'about_page' %}">xjw</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% load bootstrap3 %}
+
+{% block body %}
+    <!-- Post Content -->
+{{ form.media }}
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <form method="post" class="form">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% buttons %}
+                        <ul class="pager">
+                            <li class="next">
+                            <button type="submit" class="btn btn-primary">
+                              {% bootstrap_icon "star" %} 确认添加
+                            </button>
+                            </li>
+                        </ul>
+                        {% endbuttons %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+{% endblock %}

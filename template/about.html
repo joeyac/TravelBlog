@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Travel Blog - About{% endblock %}
+{% block pageheader %}
+<header class="intro-header" style="background-image: url('/static/img/about-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>About Me</h1>
+                    <hr class="small">
+                    <span class="subheading">This is what I do.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p>Hi everybody! I'm Jingwei Xu, a student in University of Science and Technology Beijing who is interesting in CS. My major goals are to increase my ability within computer science, to study without stop, and to make myself feel confident and excited about both the theoretical and practical aspects of computer science.</p>
+            <p>A little bit about me: I grew up in Hengyang, Hunan, and am currently living in a beautiful school in Haidian Dist,Beijing.I am studying for safety engineering bachelor's degree but I am interesting in computer science hearty, and I am part of my school's ACM team.</p>
+            <p>Academically, I'm fascinated by algorithms, data structures, programming languages, and the theory of computation. I enjoy learning these.</p>
+            <p>When I'm not studying, I'm often searching on Stack Overflow and github, listening to the music, watching movie, reading books from different categories, traveling, or doing some combination of all of these at the same time.</p>
+        </div>
+    </div>
+</div>
+
+<hr>
+{% endblock %}
