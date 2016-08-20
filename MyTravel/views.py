@@ -1,3 +1,4 @@
+# coding = utf-8
 from django.shortcuts import render
 # from ipware.ip import get_real_ip, get_ip, get_trusted_ip
 from django.http import HttpResponseRedirect
