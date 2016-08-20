@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+MAX_UPLOAD_SIZE = "429916160"
 
 # Application definition
 
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
+    'gunicorn',
     'itinerary',
 
     'django_summernote',
@@ -94,7 +96,7 @@ WSGI_APPLICATION = 'MyTravel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	'NAME': os.path.join(BASE_DIR,'db.sqlite3'),
     }
 }
 
@@ -141,11 +143,15 @@ STATIC_URL = '/static/'
 
 PROJECT_ROOT = os.path.normpath(os.path.dirname('MyTravel'))
 
-STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static"), )
+STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static/"), )
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+
+SUMMERNOTE_CONFIG = {
+	'attachment_filesize_limit': 429916160,
+}
 
 BOOTSTRAP3 = {
 

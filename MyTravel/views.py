@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from ipware.ip import get_real_ip, get_ip, get_trusted_ip
+# from ipware.ip import get_real_ip, get_ip, get_trusted_ip
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib import auth
 
 
 def index_page(request):
-    ip1 = get_ip(request, right_most_proxy=True)
-    ip2 = get_real_ip(request, right_most_proxy=True)
-    ip3 = get_trusted_ip(request, right_most_proxy=True)
-    print(ip1, ip2, ip3)
+  #  ip1 = get_ip(request, right_most_proxy=True)
+   # ip2 = get_real_ip(request, right_most_proxy=True)
+    # ip3 = get_trusted_ip(request, right_most_proxy=True)
+   #  print(ip1, ip2, ip3)
     return render(request, "index.html")
 
 
