@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # coding=utf-8
+=======
+>>>>>>> 8a13166578976e96319aa59be186abf76d481059
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
