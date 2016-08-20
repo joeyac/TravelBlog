@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block title %}Travel Blog - Post{% endblock %}
+
+{% block pageheader %}
+    <header class="intro-header" style="background-image: url('/static/img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{ station.title }}</h1>
+                        <h2 class="subheading">{{ station.sub_title }}</h2>
+                        <span>
+                            Arrival at {{ station.city }},{{ station.province }}
+                            on {% language 'en-us' %} {{ station.arrival_time |date:"D d M Y" }} {% endlanguage %}
+                        </span>
+                        <span class="meta">Posted by <a href="{% url 'about_page' %}">xjw</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block body %}
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <blockquote>
+                    {% autoescape off %}
+                        {{ station.intro }}
+                    {% endautoescape %}
+                    {% if request.user.is_authenticated %}
+                        <ul class="pager">
+                            <li class="next">
+                                <a href="/station/edit/{{ station.id }}">Edit Station &rarr;</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                    </blockquote>
+                    <hr>
+                    {% if events %}
+                        {% for item in events %}
+                            <div>
+                                <h2 class="section-heading">
+                                    {{ item.title }}
+                                    {% if item.visible == false %}
+                                        (Invisible)
+                                    {% endif %}
+                                </h2>
+                                <p class="caption text-muted">
+                                    {% if item.start_time %}
+                                        Start Time: {{ item.start_time }}
+                                    &nbsp;&nbsp;
+                                    {% endif %}
+                                    {% if item.end_time %}
+                                        End Time: {{ item.end_time }}
+                                    &nbsp;&nbsp;
+                                    {% endif %}
+                                </p>
+                                <p class="caption text-muted">
+                                    {% if item.place_detail %}
+                                        Place: {{ item.place_detail }}
+                                    &nbsp;&nbsp;
+                                    {% endif %}
+                                    {% if item.location %}
+                                        {{ item.location }}
+                                    &nbsp;&nbsp;
+                                    {% endif %}
+                                </p>
+                                {% autoescape off %}
+                                    {{ item.description }}
+                                {% endautoescape %}
+                            </div>
+                            {% if request.user.is_authenticated %}
+                                <ul class="pager">
+                                    <li class="next">
+                                        <a href="/event/edit/{{ item.id }}">Edit Event &rarr;</a>
+                                    </li>
+                                </ul>
+                            {% endif %}
+                            <hr>
+                        {% endfor %}
+                    {% else %}
+                        <h2 class="section-heading">Waiting For Add Event...</h2>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                        <ul class="pager">
+                            <li class="next">
+                                <a href="/event/add/{{ station.id }}">Add Event &rarr;</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+{% endblock %}
