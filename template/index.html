@@ -37,8 +37,9 @@
                             <a href="/post/{{ item.pk }}">
                                 <h2 class="post-title">
                                     {{ item.title }}
-                                    {% if item.visible == false %}
-                                        (Invisible)
+                                    {% if item.visible %}
+				    {% else %}
+					(InVisible)
                                     {% endif %}
                                 </h2>
                                 <h3 class="post-subtitle">

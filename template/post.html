@@ -47,8 +47,9 @@
                             <div>
                                 <h2 class="section-heading">
                                     {{ item.title }}
-                                    {% if item.visible == false %}
-                                        (Invisible)
+                                    {% if item.visible %}
+				    {% else %}
+					(InVisble)
                                     {% endif %}
                                 </h2>
                                 <p class="caption text-muted">
